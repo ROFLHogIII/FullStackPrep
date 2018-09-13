@@ -65,8 +65,8 @@ class AllChirps extends Component {
                 <input placeholder='chirp' value={this.state.text} onChange={(e) => this.setState({ text: e.target.value })} />
                 <button className='btn btn-primary' onClick={() => this.handleButtonClick()}>Chirp it up!</button>
                 <div className="row">
-                    {this.state.data.map((chirp, id) =>
-                        <ChirpCard key={id} chirp={chirp} />
+                    {this.state.data.map((chirp, id,) =>
+                        <ChirpCard id={id} key={id} chirp={chirp} />
                     )}
                 </div>
             </React.Fragment>

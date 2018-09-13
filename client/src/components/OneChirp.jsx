@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ChirpCard from "./ChirpCard"
 
 
 const chirpAPI = "/api/chirps/"
@@ -7,33 +8,28 @@ class OneChirp extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: [],
+            data: {},
             name: "",
             text: "",
+            id: ""
         }
     }
 
-    componentDidMount() {
-        // fetch(chirpAPI + this.props.match.params.id)
-        //     .then(res => res.json())
-        //     .then(ob => this.setState({ data: ob }))
+    componentWillMount() {
+        fetch(chirpAPI + this.props.match.params.id)
+            .then(res => res.json())
+            .then(ob => this.setState({
+                data: ob,
+                name: ob.name,
+                text: ob.text,
+                id: this.props.match.params.id
+            }))
     }
 
     render() {
         return (
             <React.Fragment>
-                <div className="row justify-content-center">
-                    <div className="col-md-3">
-                        <div className="card border-dark mb-3">
-                            <div className="card-header">
-                                <h1>{this.state.chirp.name}</h1>
-                            </div>
-                            <div className="card-body text-dark">
-                                <p className="card-text"> {props.chirp.text}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <ChirpCard id={this.state.id} chirp={this.state.data} />
             </React.Fragment>
         )
     }
