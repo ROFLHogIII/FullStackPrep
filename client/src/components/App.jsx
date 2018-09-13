@@ -1,8 +1,10 @@
 import React, { Component, Fragment } from 'react';
+import 'isomorphic-fetch';
 import { BrowserRouter as Router, Link, Switch, Route } from 'react-router-dom';
-import AllChirps from './components/AllChirps' // displays a list of chirps, form for making new chrips via onClick even to POST to api using fetch
-import OneChirp from './components/OneChirp'
-import EditChirp from './components/EditChirp'
+import AllChirps from './AllChirps'; // displays a list of chirps, form for making new chrips via onClick even to POST to api using fetch
+import OneChirp from './OneChirp';
+import EditChirp from './EditChirp';
+
 
 class App extends Component {
     render() {

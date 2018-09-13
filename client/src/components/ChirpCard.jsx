@@ -10,7 +10,7 @@ let ChirpCard = (props) => (
                 </div>
                 <div className="card-body text-dark">
                     <p className="card-text"> {props.chirp.text}</p>
-                    <Link to={`/chirp/${props.movie.id}/edit`} className="btn btn-primary">Edit Chirp</Link>
+                    <Link to={`/chirp/${props.chirp.id}/edit`} className="btn btn-primary">Edit Chirp</Link>
                 </div>
             </div>
         </div>

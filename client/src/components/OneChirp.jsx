@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import 'isomorphic-fetch';
-import 'es6-promise';
 
 
 const chirpAPI = "/api/chirps/"
@@ -16,9 +14,9 @@ class OneChirp extends Component {
     }
 
     componentDidMount() {
-        fetch(filmAPI + this.props.match.params.id)
-            .then(res => res.json())
-            .then(ob => this.setState({ data: ob }))
+        // fetch(chirpAPI + this.props.match.params.id)
+        //     .then(res => res.json())
+        //     .then(ob => this.setState({ data: ob }))
     }
 
     render() {

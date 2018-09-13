@@ -14,17 +14,18 @@ router.get('/:id?', (req, res) => {
 
 router.post('/', (req, res) => {
     chirpsStore.CreateChirp(req.body);
-    res.sendStatus(200)
+    res.send(chirpsStore.GetChirps())
 })
 
 router.delete('/:id', (req, res) => {
     chirpsStore.DeleteChirp(req.params.id);
-    res.send("It's gone, fam.")
+    res.send("it's done, my dude.")
+
 })
 
 router.put('/:id', (req, res) => {
     chirpsStore.UpdateChirp(req.params.id, req.body)
-    res.send("It done changed, yo!")
+    res.send(chirpsStore.GetChirps())
 })
 
 module.exports = router;

@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
-import 'isomorphic-fetch';
-import 'es6-promise';
 import ChirpCard from "./ChirpCard"
 
 
 const chirpAPI = "/api/chirps/"
 
-class MoviePage extends Component {
+class AllChirps extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -19,13 +17,21 @@ class MoviePage extends Component {
     componentWillMount() {
         fetch(chirpAPI)
             .then(response => response.json())
-            .then(data => this.setState({ data }));
+            .then(data => {
+                let chirps = Object.keys(data).map(id => {
+                    return data[id];
+                })
+                chirps.pop()
+                this.setState({
+                    data: chirps
+                })
+            });
     }
 
     handleButtonClick() {
         let body = {
             name: this.state.name,
-            age: this.state.text
+            text: this.state.text
         }
         fetch(chirpAPI, {
             method: 'POST',
@@ -35,18 +41,28 @@ class MoviePage extends Component {
             }
         })
             .then(response => response.json())
-            .then(data => this.setState({
-                data,
-                name: '',
-                text: ''
-            }));
+            .then(data => {
+                let chirps = Object.keys(data).map(id => {
+                    return {
+                        id: id,
+                        name: date[id].name,
+                        text: data[id].text
+                    };
+                })
+                chirps.pop()
+                this.setState({
+                    data: chirps,
+                    name: '',
+                    text: ''
+                });
+            });
     }
 
     render() {
         return (
             <React.Fragment>
                 <input placeholder='name' value={this.state.name} onChange={(e) => this.setState({ name: e.target.value })} />
-                <input placeholder='chirp' value={this.state.text} onChange={(e) => this.setState({ age: e.target.value })} />
+                <input placeholder='chirp' value={this.state.text} onChange={(e) => this.setState({ text: e.target.value })} />
                 <button className='btn btn-primary' onClick={() => this.handleButtonClick()}>Chirp it up!</button>
                 <div className="row">
                     {this.state.data.map((chirp, id) =>
